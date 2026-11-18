@@ -1,23 +1,21 @@
 
 import SwiftUI
 
-// MARK: - الشاشة الرئيسية للتطبيق
-// مسؤولة عن:
-// 1. عرض Splash Screen عند تشغيل التطبيق.
-// 2. التحقق هل المستخدمة جديدة أو سبق لها دخول التطبيق.
-// 3. عرض Welcome للمستخدمة الجديدة فقط.
-// 4. فتح MyPlants مباشرة للمستخدمة السابقة.
+// MARK: - التنقل الرئيسي حسب User Flow
+// Splash -> New User? -> Welcome أو My Plants
+// لا ننشئ Home Page إضافية.
+// MyPlantsScreen هي الصفحة الرئيسية الموجودة أصلًا.
 
 struct ContentView: View {
 
-    // ViewModel المسؤول عن بيانات النباتات.
+    // مدير بيانات النباتات.
     @StateObject private var viewModel = PlantViewModel()
 
-    // حفظ حالة إكمال الترحيب بين مرات تشغيل التطبيق.
+    // حفظ حالة تجاوز صفحة الترحيب.
     @AppStorage("hasCompletedWelcome")
     private var hasCompletedWelcome = false
 
-    // التحكم في ظهور شاشة البداية.
+    // إظهار Splash عند تشغيل التطبيق.
     @State private var showSplash = true
 
     var body: some View {
@@ -25,7 +23,7 @@ struct ContentView: View {
 
             if showSplash {
 
-                // MARK: - Splash Screen
+                // شاشة البداية.
                 SplashScreen {
                     withAnimation(.easeInOut(duration: 0.3)) {
                         showSplash = false
@@ -35,21 +33,23 @@ struct ContentView: View {
 
             } else if hasCompletedWelcome {
 
-                // MARK: - مستخدمة سابقة
-                // الانتقال مباشرة إلى صفحة النباتات.
+                // مستخدمة سابقة:
+                // تنتقل مباشرة إلى صفحة النباتات.
                 MyPlantsScreen(viewModel: viewModel)
                     .transition(.opacity)
 
             } else {
 
-                // MARK: - مستخدمة جديدة
-                // عرض صفحة الترحيب مرة واحدة فقط.
+                // مستخدمة جديدة:
+                // تظهر لها صفحة الترحيب الموجودة أصلًا.
                 WelcomeScreen {
 
-                    // حفظ أن المستخدمة أكملت الترحيب.
-                    hasCompletedWelcome = true
+                    // حفظ إكمال الترحيب.
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        hasCompletedWelcome = true
+                    }
 
-                    // طلب صلاحية الإشعارات.
+                    // طلب إذن الإشعارات.
                     viewModel.requestNotifications()
                 }
                 .transition(.opacity)
@@ -59,7 +59,6 @@ struct ContentView: View {
     }
 }
 
-// MARK: - معاينة التطبيق
 #Preview {
     ContentView()
 }

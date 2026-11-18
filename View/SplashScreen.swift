@@ -2,13 +2,12 @@
 import SwiftUI
 
 // MARK: - Splash Screen
-// تظهر عند كل تشغيل للتطبيق.
-// تعرض اسم التطبيق وصورة النبتة لمدة قصيرة.
-// بعدها تنتقل تلقائيًا إلى الشاشة المناسبة.
+// تظهر عند تشغيل التطبيق لمدة 1.5 ثانية.
+// بعدها ينتقل التطبيق تلقائيًا حسب حالة المستخدمة.
 
 struct SplashScreen: View {
 
-    // الدالة التي تنفذ بعد انتهاء شاشة البداية.
+    // تنفذ بعد انتهاء عرض Splash.
     let onFinish: () -> Void
 
     var body: some View {
@@ -16,7 +15,7 @@ struct SplashScreen: View {
 
             Spacer()
 
-            // استخدام صورة Plant الموجودة في Assets.
+            // صورة النبتة الموجودة في Assets.
             PlantIllustration(imageName: "Plant")
 
             // اسم التطبيق.
@@ -30,7 +29,6 @@ struct SplashScreen: View {
                 )
                 .foregroundStyle(.white)
 
-            // وصف مختصر.
             Text("Your little plant companion")
                 .font(.system(size: 15))
                 .foregroundStyle(.gray)
@@ -44,14 +42,11 @@ struct SplashScreen: View {
         .background(
             PlantTheme.background.ignoresSafeArea()
         )
-
-        // عرض Splash لمدة 1.5 ثانية.
         .task {
-            try? await Task.sleep(
-                for: .seconds(1.5)
-            )
+            // الانتظار لمدة 1.5 ثانية.
+            try? await Task.sleep(for: .seconds(1.5))
 
-            // عدم تنفيذ الانتقال إذا أُلغيت المهمة.
+            // منع الانتقال إذا أُلغيت المهمة.
             guard !Task.isCancelled else {
                 return
             }
@@ -61,7 +56,6 @@ struct SplashScreen: View {
     }
 }
 
-// MARK: - معاينة Splash Screen
 #Preview {
     SplashScreen(onFinish: {})
 }
