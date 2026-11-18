@@ -1,55 +1,38 @@
 
 import SwiftUI
 
-// MARK: - التنقل الرئيسي حسب User Flow
-// Splash -> New User? -> Welcome أو My Plants
-// لا ننشئ Home Page إضافية.
-// MyPlantsScreen هي الصفحة الرئيسية الموجودة أصلًا.
+// MARK: - الواجهة الرئيسية للتطبيق
+// هذا الملف يربط الواجهات بالـ ViewModel.
+// لا يحتوي على منطق إضافة أو حذف النباتات.
 
 struct ContentView: View {
 
-    // مدير بيانات النباتات.
+    // إنشاء ViewModel واحد لمشاركة البيانات بين الشاشات.
     @StateObject private var viewModel = PlantViewModel()
 
-    // حفظ حالة تجاوز صفحة الترحيب.
-    @AppStorage("hasCompletedWelcome")
-    private var hasCompletedWelcome = false
-
-    // إظهار Splash عند تشغيل التطبيق.
-    @State private var showSplash = true
+    // عرض صفحة الترحيب عند بداية تشغيل التطبيق.
+    @State private var started = false
 
     var body: some View {
         Group {
 
-            if showSplash {
+            if started {
 
-                // شاشة البداية.
-                SplashScreen {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        showSplash = false
-                    }
-                }
-                .transition(.opacity)
-
-            } else if hasCompletedWelcome {
-
-                // مستخدمة سابقة:
-                // تنتقل مباشرة إلى صفحة النباتات.
+                // عرض صفحة النباتات بعد بدء استخدام التطبيق.
                 MyPlantsScreen(viewModel: viewModel)
                     .transition(.opacity)
 
             } else {
 
-                // مستخدمة جديدة:
-                // تظهر لها صفحة الترحيب الموجودة أصلًا.
+                // عرض صفحة الترحيب.
                 WelcomeScreen {
 
-                    // حفظ إكمال الترحيب.
+                    // الانتقال إلى صفحة النباتات بحركة ناعمة.
                     withAnimation(.easeInOut(duration: 0.3)) {
-                        hasCompletedWelcome = true
+                        started = true
                     }
 
-                    // طلب إذن الإشعارات.
+                    // طلب السماح بإشعارات الري.
                     viewModel.requestNotifications()
                 }
                 .transition(.opacity)
@@ -59,6 +42,7 @@ struct ContentView: View {
     }
 }
 
+// MARK: - معاينة التطبيق
 #Preview {
     ContentView()
 }
