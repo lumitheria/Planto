@@ -1,62 +1,32 @@
 # Planto 🌱
 
-**A little care goes a long way.**
+**Your little plant companion.**
 
-Planto is an iOS plant care reminder app built with SwiftUI. It helps users organize their plants, manage watering routines, and track their daily plant care progress.
+Planto is an iOS app designed to simplify plant care through personalized watering reminders and progress tracking.
 
 ## App Preview
 
-| Welcome | My Plants | All Done |
+| Splash | Welcome | My Plants | All Done |
+|<img width="200" height="455" alt="image" src="https://github.com/user-attachments/assets/bf348811-b2c8-4d89-a3a9-9e295360c233" />
 |:---:|:---:|:---:|
-| <img src="screenshots/welcome.png" width="200"> | <img src="screenshots/my-plants.png" width="200"> | <img src="screenshots/all-done.png" width="200"> |
+| <img src="screenshots/splash.png" width="170"> | <img src="screenshots/welcome.png" width="170"> | <img src="screenshots/my-plants.png" width="170"> | <img src="screenshots/all-done.png" width="170"> |
 
-## Features
+## Key Features
 
-- **Plant Management** — Add, edit, and delete plant reminders.
-- **Watering Tracker** — Mark plants as watered and monitor progress.
-- **Care Details** — Set room, lighting, water amount, and watering frequency.
-- **Notifications** — Receive daily watering reminders.
-- **Smart Onboarding** — Splash screen and first-time user detection.
-- **Local Storage** — Save plant information across app sessions.
-- **Completion Screen** — Celebrate when all reminders are completed.
+- Create, edit, and delete plant reminders.
+- Customize watering schedules and care details.
+- Track daily progress and completed tasks.
+- Receive local watering notifications.
+- Save data locally with UserDefaults.
 
 ## Tech Stack
 
-`Swift` · `SwiftUI` · `MVVM` · `UserDefaults` · `UserNotifications`
-
-## Architecture
-
-The app follows the **MVVM (Model–View–ViewModel)** architecture for a clear separation of responsibilities.
-
-```text
-Plants/
-├── Model/
-│   └── PlantItem.swift
-├── ViewModel/
-│   └── PlantViewModel.swift
-├── View/
-│   ├── ContentView.swift
-│   ├── SplashScreen.swift
-│   ├── WelcomeScreen.swift
-│   ├── MyPlantsScreen.swift
-│   ├── SetReminderView.swift
-│   └── PlantComponents.swift
-└── PlantsApp.swift
-```
-
-## User Flow
-
-**Splash Screen → First-Time User Check → Welcome / My Plants → Add, Edit & Complete Reminders**
-
-New users see the welcome screen, while returning users go directly to their plant dashboard.
+**Swift · SwiftUI · MVVM · UserDefaults · UserNotifications**
 
 ## Getting Started
 
-1. Clone the repository.
-2. Open the project in Xcode.
-3. Select an iOS simulator or connected iPhone.
-4. Build and run.
+Clone the repository, open the project in Xcode, and run it on an iOS simulator or device.
 
 ---
 
-Made with SwiftUI 🌱
+*Developed at the Apple Developer Academy.*
