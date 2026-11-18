@@ -1,32 +1,27 @@
 # Planto 🌱
+**A little care goes a long way.**
 
-**Your little plant companion.**
-
-Planto is an iOS app designed to simplify plant care through personalized watering reminders and progress tracking.
+Planto is an iOS plant care app that makes it easy to organize plants, manage watering reminders, and track daily care routines.
 
 ## App Preview
 
-| Splash | Welcome | My Plants | All Done |
-|<img width="200" height="455" alt="image" src="https://github.com/user-attachments/assets/bf348811-b2c8-4d89-a3a9-9e295360c233" />
+| Welcome | My Plants | All Done |
 |:---:|:---:|:---:|
-| <img src="screenshots/splash.png" width="170"> | <img src="screenshots/welcome.png" width="170"> | <img src="screenshots/my-plants.png" width="170"> | <img src="screenshots/all-done.png" width="170"> |
+| ![Welcome](screenshots/welcome.png) | ![My Plants](screenshots/my-plants.png) | ![All Done](screenshots/all-done.png) |
 
-## Key Features
+## Features
+- Add, edit, and delete plants.
+- Set watering schedules and receive notifications.
+- Track watering progress with an interactive checklist.
+- Organize plants by location, lighting, and water needs.
+- Save plant data locally.
 
-- Create, edit, and delete plant reminders.
-- Customize watering schedules and care details.
-- Track daily progress and completed tasks.
-- Receive local watering notifications.
-- Save data locally with UserDefaults.
+## Built With
+**Swift** · **SwiftUI** · **MVVM** · **UserDefaults** · **UserNotifications**
 
-## Tech Stack
-
-**Swift · SwiftUI · MVVM · UserDefaults · UserNotifications**
-
-## Getting Started
-
-Clone the repository, open the project in Xcode, and run it on an iOS simulator or device.
+## Architecture
+Built using the **MVVM architecture** to separate the user interface, data models, and application logic for cleaner, maintainable code.
 
 ---
 
-*Developed at the Apple Developer Academy.*
+Made with SwiftUI 🌱
